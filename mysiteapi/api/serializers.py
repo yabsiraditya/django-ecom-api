@@ -19,3 +19,28 @@ class ProductSerializer(serializers.ModelSerializer):
                 "Price must be greater thn 0"
             )
         return value
+    
+
+class OrderItemSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = (
+            'product',
+            'quantity',
+        )
+
+
+class OrderSerialize(serializers.ModelSerializer):
+    items = OrderItemSerialize(many=True, read_only=True)
+    class Meta:
+        model = Order
+        fields = (
+            'order_id',
+            'created_at',
+            'user',
+            'status',
+            'items',
+        )
+    
+    def validate_(self, value):
+        pass
