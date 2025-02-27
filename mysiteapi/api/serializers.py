@@ -57,6 +57,8 @@ class OrderSerialize(serializers.ModelSerializer):
             'items',
             'total_price',
         )
-    
-    def validate_(self, value):
-        pass
+
+class ProductInfoSerializer(serializers.Serializer):
+    products = ProductSerializer(many=True)
+    count = serializers.IntegerField()
+    max_price = serializers.FloatField()
