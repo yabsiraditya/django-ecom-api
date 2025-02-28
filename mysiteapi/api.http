@@ -1,0 +1,13 @@
+GET http://127.0.0.1:8000/products/ HTTP/1.1
+
+###
+
+POST http://127.0.0.1:8000/products/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "description": "Televisioner Amazing Nice Very Good Very Well",
+    "name": "Televisioner",
+    "price": 300.00,
+    "stock": 40
+}
