@@ -1,0 +1,29 @@
+GET http://127.0.0.1:8000/products/ HTTP/1.1
+
+###
+
+POST http://127.0.0.1:8000/products/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNzcwNTU2LCJpYXQiOjE3NDA3NzAyNTYsImp0aSI6IjBmODNhNGUwNmQ4YzQyODI4NTRlZDc1MzlhN2E2YTI5IiwidXNlcl9pZCI6Mn0.LFW5DW_C89M3jFG6yizuGqdGKLPvLW63EpY3__RG4nM
+
+{
+    "description": "Mataharii Amazing Nice Very Good Very Well",
+    "name": "Mataharii",
+    "price": 300.00,
+    "stock": 40
+}
+
+###
+
+POST http://127.0.0.1:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "test"
+}
+
+###
+
+GET http://127.0.0.1:8000/user-orders/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNzcwOTM0LCJpYXQiOjE3NDA3NzA2MzQsImp0aSI6ImQ1YWQ0M2I0YmE0OTQwMzQ4YzY4ZmNiMTJhNzQxMjJiIiwidXNlcl9pZCI6MX0.ZC685l1fqj6kc-oOewUkjUJdKVmU9ME6t53qFc4qjA8
