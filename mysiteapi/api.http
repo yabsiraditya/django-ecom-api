@@ -2,9 +2,30 @@ GET http://127.0.0.1:8000/products/ HTTP/1.1
 
 ###
 
+GET http://127.0.0.1:8000/products/2/ HTTP/1.1
+
+###
+
+DELETE  http://127.0.0.1:8000/products/2/ HTTP/1.1
+
+###
+
+PUT  http://127.0.0.1:8000/products/2/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwODEwNjk2LCJpYXQiOjE3NDA4MTAzOTYsImp0aSI6ImY2ZDhkZDM1NjM3NTQ0MzFhOTFlZjQ5ZThkYTU0ZDlhIiwidXNlcl9pZCI6MX0.aymzhbmShkOa_TrgytcKiub0GKz1l1YdKMrsmXm0iig
+
+{
+    "description": "Amazing Nice Very Good Very Well",
+    "name": "Mantap Lek",
+    "price": 300.00,
+    "stock": 40
+}
+
+###
+
 POST http://127.0.0.1:8000/products/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNzcwNTU2LCJpYXQiOjE3NDA3NzAyNTYsImp0aSI6IjBmODNhNGUwNmQ4YzQyODI4NTRlZDc1MzlhN2E2YTI5IiwidXNlcl9pZCI6Mn0.LFW5DW_C89M3jFG6yizuGqdGKLPvLW63EpY3__RG4nM
+Authorization: Bearer 
 
 {
     "description": "Mataharii Amazing Nice Very Good Very Well",
@@ -25,5 +46,14 @@ Content-Type: application/json
 
 ###
 
+POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0MDg1NzYwNCwiaWF0IjoxNzQwNzcxMjA0LCJqdGkiOiJkODAyMmY3MTk3ODg0OTRmYjlhY2JlYjY0MDM4MGMxMyIsInVzZXJfaWQiOjF9.j_YkjA-gmqDMJTnFnfjw0D2KcWwxksOHZwO8gWirvdw"
+}
+
+###
+
 GET http://127.0.0.1:8000/user-orders/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwNzcwOTM0LCJpYXQiOjE3NDA3NzA2MzQsImp0aSI6ImQ1YWQ0M2I0YmE0OTQwMzQ4YzY4ZmNiMTJhNzQxMjJiIiwidXNlcl9pZCI6MX0.ZC685l1fqj6kc-oOewUkjUJdKVmU9ME6t53qFc4qjA8
+Authorization: Bearer 
