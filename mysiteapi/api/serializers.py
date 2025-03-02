@@ -20,7 +20,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return value
     
 
-class OrderItemSerialize(serializers.ModelSerializer):
+class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name')
     product_price = serializers.DecimalField(
         source='product.price', 
@@ -38,8 +38,9 @@ class OrderItemSerialize(serializers.ModelSerializer):
         )
 
 
-class OrderSerialize(serializers.ModelSerializer):
-    items = OrderItemSerialize(many=True, read_only=True)
+class OrderSerializer(serializers.ModelSerializer):
+    order_id = serializers.UUIDField(read_only=True,)
+    items = OrderItemSerializer(many=True, read_only=True)
     total_price = serializers.SerializerMethodField(method_name='total')
 
     def total(self, obj):
