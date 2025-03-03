@@ -38,6 +38,40 @@ class OrderItemSerializer(serializers.ModelSerializer):
         )
 
 
+class OrderCreateSerializer(serializers.ModelSerializer):
+    class OrderItemCreateSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = OrderItem   
+            fields = (
+                'product',
+                'quantity',
+            )
+
+    order_id = serializers.UUIDField(read_only=True,)
+    items = OrderItemCreateSerializer(many=True) 
+
+    def create(self, validated_data):
+        orderitem_data = validated_data.pop('items')
+        order = Order.objects.create(**validated_data)
+
+        for item in orderitem_data:
+            OrderItem.objects.create(order=order, **item)
+
+        return order
+
+    class Meta:
+        model = Order
+        fields = (
+            'order_id',
+            'user',
+            'status',
+            'items',
+        )
+        extra_kwargs = {
+            'user':{'read_only':True}
+        }
+
+
 class OrderSerializer(serializers.ModelSerializer):
     order_id = serializers.UUIDField(read_only=True,)
     items = OrderItemSerializer(many=True, read_only=True)
