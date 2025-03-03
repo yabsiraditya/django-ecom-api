@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 from api.filters import InStockFilterBackend, OrderFilter, ProductFilter
 from api.models import Order, OrderItem, Product
 from api.serializers import (OrderItemSerializer, OrderSerializer,
-                             ProductInfoSerializer, ProductSerializer)
+                             ProductInfoSerializer, ProductSerializer, OrderCreateSerializer)
 
 
 class ProductListCreateApiView(generics.ListCreateAPIView):
@@ -61,16 +61,20 @@ class OrderViewSet(viewsets.ModelViewSet):
     filterset_class = OrderFilter
     filter_backends = [DjangoFilterBackend]
 
-    @action(
-        detail=False, 
-        methods=['get'], 
-        url_path='user-orders',
-    )
-    def user_orders(self, request):
-        orders = self.get_queryset().filter(user=request.user)
-        serializer = self.get_serializer(orders, many=True)
-        return Response(serializer.data)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return OrderCreateSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if not self.request.user.is_staff:
+            qs = qs.filter(user=self.request.user)
+        return qs 
+    
 
 # class UserOrderListApiView(generics.ListAPIView):
 #     queryset = Order.objects.prefetch_related('items__product')
